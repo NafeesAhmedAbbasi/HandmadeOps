@@ -1,6 +1,7 @@
 # Digital Marketplace Assistance Tool (DMS)
 
-This project is a comprehensive management system for handling orders, vendors, shipping, customers, and employees for a business selling handmade products.
+A digital marketplace assistant tool is a versatile solution designed to help online e-commerce platforms manage daily operations comprehensively and address current marketplace challenges. 
+The ultimate goal is to fully automate key business operations while integrating and managing existing e-commerce platforms using digital assistance tools.
 
 ## Features
 
