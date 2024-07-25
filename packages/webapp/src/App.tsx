@@ -1,16 +1,15 @@
-import React, { Suspense, lazy } from 'react';
-
-const HeavyComponent = lazy(() => import('./HeavyComponent')); // Adjust the path if necessary
-
+import React from 'react';
+import { Container, Typography } from '@mui/material';
+import UserList from './features/users/UsersList';
 const App: React.FC = () => {
   return (
-    <div>
-      <h1>Hello, world!</h1>
-      <Suspense fallback={<div>Loading...</div>}>
-        <HeavyComponent />
-      </Suspense>
-    </div>
+    <Container>
+      <Typography variant="h4" gutterBottom>
+        User List
+      </Typography>
+      <UserList />
+    </Container>
   );
-};
+}
 
 export default App;
