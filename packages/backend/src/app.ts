@@ -1,3 +1,4 @@
+// src/index.ts
 import express from 'express';
 import mongoose from 'mongoose';
 import userRoutes from './routes/userRoutes';
@@ -8,10 +9,14 @@ const app = express();
 app.use(express.json());
 
 // Routes
+
 app.use('/api/users', userRoutes);
+app.get('/test', (req, res) => {
+  res.send('Server is working!');
+});
 
 // MongoDB URI
-const mongoUri = 'mongodb://localhost:27017/mydatabase'; // Replace with your MongoDB URI
+const mongoUri = "mongodb+srv://uhmls:QvJIo1deOQuN2bRB@learning01.kjminwi.mongodb.net/?retryWrites=true&w=majority&appName=learning01";
 
 // Connect to MongoDB
 mongoose.connect(mongoUri)
@@ -21,5 +26,6 @@ mongoose.connect(mongoUri)
   .catch(err => {
     console.error('Failed to connect to MongoDB', err);
   });
+
 
 export default app;
