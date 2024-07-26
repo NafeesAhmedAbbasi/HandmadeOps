@@ -5,9 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node webapp/src/index.ts",
     "build": "tsc",
-    "dev": "ts-node-dev webapp/src/index.ts"
+    "dev": "ts-node-dev webapp/src/index.ts",
+    "start": "concurrently \"npm run start:backend\" \"npm run start:webapp\"",
+    "start:backend": "npm run --prefix packages/backend start",
+    "start:webapp": "npm run --prefix packages/webapp start"
   },
   "keywords": [],
   "author": "",
@@ -17,10 +19,11 @@
     "redux": "^4.1.0"
   },
   "devDependencies": {
+    "@jest/types": "29.6.3",
     "@types/node": "^14.14.37",
+    "concurrently": "^7.6.0",
     "ts-node": "^10.0.0",
     "ts-node-dev": "^1.1.6",
-    "typescript": "^4.2.4",
-    "@jest/types": "29.6.3"
+    "typescript": "^4.2.4"
   }
 }
