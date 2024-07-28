@@ -3,6 +3,12 @@
 A digital marketplace assistant tool is a versatile solution designed to help online e-commerce platforms manage daily operations comprehensively and address current marketplace challenges. 
 The ultimate goal is to fully automate key business operations while integrating and managing existing e-commerce platforms using digital assistance tools.
 
+## Project Structure
+
+├── packages
+│ ├── backend # Express-based Node.js backend
+│ └── webapp # React frontend
+
 ## Features
 
 - Order Management
@@ -28,25 +34,49 @@ The ultimate goal is to fully automate key business operations while integrating
 
 ## Prerequisites
 
-- [Node.js](https://nodejs.org/) (v14 or later)
-- [Yarn](https://yarnpkg.com/) (v1.22.10 or later)
+- **Node.js** (>=12.x, with npm >=6.x or yarn >=1.x)
+- **Visual Studio Code** (for debugging)
 
 ## Installation
 
-1. Clone the repository:
+### Clone the Repository
 
-    ```sh
-    git clone https://github.com/yourusername/yourrepositoryname.git
-    cd yourrepositoryname
-    ```
+First, clone the repository and navigate into the project directory:
 
-2. Install the dependencies:
+```bash
+    git clone https://github.com/NafeesAhmedAbbasi/digital-marketplace-assistance-tool.git
+    cd digital-marketplace-assistance-tool
+```
 
-    ```sh
-    yarn install
-    ```
+Install Dependencies
+Install dependencies for the root project and each package:
+
+```sh
+    yarn install       # Install root dependencies
+    yarn run install:all  # Install all dependencies for subprojects
+
+```
 
 
 
-## Project Structure
+## Run the Application
 
+```sh
+    yarn start      
+```
+
+Running Individually
+If you need to run the backend or frontend individually:
+
+Backend
+```sh
+    npm run start:backend
+    This will start the backend server on http://localhost:8080.
+```
+Webapp (Frontend)
+
+```sh
+npm run start:webapp
+This will start the frontend development server on http://localhost:3000.
+
+```
