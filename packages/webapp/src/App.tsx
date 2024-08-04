@@ -1,15 +1,13 @@
 import React from 'react';
-import { Container, Typography } from '@mui/material';
-import UserList from './features/users/UsersList';
+import { Provider } from 'react-redux';
+import store from './redux/store';
+import Navigation from './components/Navigation';
+
 const App: React.FC = () => {
   return (
-    <Container>
-      <Typography variant="h4" gutterBottom>
-        User List
-      </Typography>
-      <UserList />
-    </Container>
+    <Provider store={store}>
+      <Navigation />
+    </Provider>
   );
-}
-
+};
 export default App;
