@@ -1,46 +1,48 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
-import { User } from '../types';
+import {
+  FETCH_USER_REQUEST,
+  FETCH_USER_SUCCESS,
+  FETCH_USER_FAILURE,
+  UPDATE_USER,
+} from '../types/userTypes';
+import { User } from '../actions/types';
 
-// Define the initial state and types
 interface UserState {
-  loading: boolean;
   users: User[];
+  status: 'inactive' | 'loading' | 'active' | 'failed';
   error: string | null;
 }
 
 const initialState: UserState = {
-  loading: false,
   users: [],
+  status: 'inactive',
   error: null,
 };
 
-// Define async thunk for fetching users
-export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
-  const response = await axios.get<User[]>('http://localhost:8080/api/users');
-  return response.data;
-});
-
-// Create the slice
-const userSlice = createSlice({
-  name: 'users',
-  initialState,
-  reducers: {},
-  extraReducers: (builder) => {
-    builder
-      .addCase(fetchUsers.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(fetchUsers.fulfilled, (state, action) => {
-        state.loading = false;
-        state.users = action.payload;
-      })
-      .addCase(fetchUsers.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.error.message || 'Failed to fetch users';
-      });
-  },
-});
-
-export default userSlice.reducer;
+export default function userReducer(state = initialState, action: any): UserState {
+  switch (action.type) {
+    case FETCH_USER_REQUEST:
+      return {
+        ...state,
+        status: 'loading',
+      };
+    case FETCH_USER_SUCCESS:
+      return {
+        ...state,
+        status: 'active',
+        users: action.payload,
+      };
+    case FETCH_USER_FAILURE:
+      return {
+        ...state,
+        status: 'failed',
+        error: action.payload,
+      };
+    case UPDATE_USER:
+      return {
+        ...state,
+        users: [...state.users, action.payload],
+      };
+    default:
+      return state;
+  }
+}
