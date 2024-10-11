@@ -1,7 +1,9 @@
 // src/components/Navigation.tsx
 
 import React, { useState } from 'react';
-import { AppBar, Toolbar, Button, Box } from '@mui/material';
+import { AppBar, Toolbar, IconButton, Box, Tooltip } from '@mui/material';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import ListIcon from '@mui/icons-material/List';
 import AddUser from './user/AddUser';
 import UserList from './user/UserList';
 
@@ -12,8 +14,16 @@ const Navigation: React.FC = () => {
     <div>
       <AppBar position="static">
         <Toolbar>
-          <Button color="inherit" onClick={() => setView('list')}>User List</Button>
-          <Button color="inherit" onClick={() => setView('add')}>Add User</Button>
+          <Tooltip title="User List">
+            <IconButton color="inherit" onClick={() => setView('list')}>
+              <ListIcon />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="Add User">
+            <IconButton color="inherit" onClick={() => setView('add')}>
+              <PersonAddIcon />
+            </IconButton>
+          </Tooltip>
         </Toolbar>
       </AppBar>
       <Box mt={2}>

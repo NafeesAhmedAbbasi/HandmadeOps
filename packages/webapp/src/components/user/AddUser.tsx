@@ -14,7 +14,7 @@ const AddUser: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (name && email && password) {
-      const newUser: Omit<User, 'id'> = {
+      const newUser: Omit<User, '_id'> = {
         name,
         email,
         password,

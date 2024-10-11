@@ -43,7 +43,7 @@ export const fetchUsers =
   };
 
 export const addUser =
-  (user: Omit<User, "id">): ThunkAction<void, RootState, unknown, any> =>
+  (user: Omit<User, "_id">): ThunkAction<void, RootState, unknown, any> =>
   async (dispatch: Dispatch) => {
     try {
       const response = await axios.post(
@@ -58,7 +58,7 @@ export const addUser =
 
   export const setUserInactive = (userId: string): ThunkAction<void, RootState, unknown, any> => async (dispatch: Dispatch, getState) => {
     const { users } = getState().users;
-    const user = users.find((u) => u.id == userId);
+    const user = users.find((u) => u._id == userId);
   
     if (!user) {
       console.error(`User with id ${userId} not found.`);
@@ -66,7 +66,7 @@ export const addUser =
     }
   
     try {
-      await axios.put( `${config.baseURL}/users${userId}`, { ...user, status: 'inactive' });
+      await axios.put( `${config.baseURL}/users/${userId}`, { ...user, status: 'inactive' });
       dispatch(fetchUsers() as any); // Refetch users to update the list
     } catch (error) {
       console.error(error);

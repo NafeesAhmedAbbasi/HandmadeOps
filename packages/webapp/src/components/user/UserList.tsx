@@ -4,7 +4,8 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchUsers, setUserInactive } from '../../redux/actions/userAction';
 import { RootState } from '../../redux/store';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, IconButton } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const UserList: React.FC = () => {
   const dispatch = useDispatch();
@@ -33,20 +34,20 @@ const UserList: React.FC = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {users.map(user => (
-            <TableRow key={user.id}>
-              <TableCell>{user.name}</TableCell>
-              <TableCell>{user.email}</TableCell>
-              <TableCell>{user.status}</TableCell>
-              <TableCell>
-                {user.status === 'active' && (
-                  <Button color="secondary" onClick={() => handleDelete(user.id as any)}>
-                    Set Inactive
-                  </Button>
-                )}
-              </TableCell>
-            </TableRow>
-          ))}
+          {users
+            .filter(user => user.status === 'active') // Only show active users
+            .map(user => (
+              <TableRow key={user._id}>
+                <TableCell>{user.name}</TableCell>
+                <TableCell>{user.email}</TableCell>
+                <TableCell>{user.status}</TableCell>
+                <TableCell>
+                  <IconButton color="secondary" onClick={() => handleDelete(user._id)}>
+                    <DeleteIcon />
+                  </IconButton>
+                </TableCell>
+              </TableRow>
+            ))}
         </TableBody>
       </Table>
     </TableContainer>
